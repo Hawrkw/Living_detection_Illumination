@@ -13,9 +13,21 @@ class FaceDataset:
         else:
             image_sets_file = os.path.join(self.root, 'train.txt')
         self.ids = FaceDataset.read_image_ids(image_sets_file)
+
+        # 还有一个问题-label--写在txt里边？
+    # 数据获取流程-通过item获取图片文件夹路径-读取图片文件夹中的图片以及光照方向-处理读取的数据得到差分图+法线图+反射率图——将其concat
     def __getitem__(self, item):
-        #image_id = dataset/true/renming/changjing image_id是个文件夹，通过文件夹里的图像获得差分图
+        # image_id = dataset/true/renming/changjing image_id是文件夹路径，通过该路径读取该文件夹下不同光照图像路径
         image_id = self.ids[item]
+        left_light_source_path = os.path.join(image_id, 'left_light_source.jpg')
+        # 获取差分图
+        natural_light_path = os.path.join(image_id, 'natural_light.jpg')
+        left_difference_graph = self.get_difference_graph(natural_light_path, left_light_source_path)
+        top_light_source_path = os.path.join(image_id, 'top_light_source.jpg')
+        top_difference_graph = self.get_difference_graph(natural_light_path, top_light_source_path)
+        right_light_source_path = os.path.join(image_id, 'right_light_source.jpg')
+        right_difference_graph = self.get_difference_graph(natural_light_path, right_light_source_path)
+        # 通过差分图与光照方向-平行光照-获取法线图与反射率图
         #
 
     def get_difference_graph(natural_light_img_path, light_source_img_path):
