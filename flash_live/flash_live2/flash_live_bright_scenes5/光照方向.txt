@@ -1,0 +1,11 @@
+
+#人脸鼻尖位置:
+    #
+    wu_paper_bright_fake:[36,0,28.5],y_paper_bright_fake:[36,0,28.5],c_paper_bright_fake:[36,0,29],
+    4_paper_bright_fake:[36,0,32],
+    5_photo_bright_fake:[36,0,30.5],6_photo_bright_fake:[36,0,30],
+    #光源位置:left:[0,-12,24],top:[0,0,36],right:[0,12,24]
+    #光源方向是指从鼻尖到光源
+    #此场景下，太阳光较弱，光源离纸张的距离较近
+
+
